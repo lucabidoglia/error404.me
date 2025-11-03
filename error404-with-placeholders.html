@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERROR 404 - Streetwear × NFT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #1a1a1a;
+            border-bottom: 3px solid #ff0000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff0000;
+            letter-spacing: 2px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav button {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s;
+        }
+        
+        nav button:hover {
+            color: #ff0000;
+            border-bottom: 2px solid #ff0000;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 4rem;
+            color: #ff0000;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+        
+        .button {
+            background: #ff0000;
+            color: #000;
+            padding: 1rem 2rem;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin: 0.5rem;
+            transition: all 0.3s;
+            border: 2px solid #ff0000;
+        }
+        
+        .button:hover {
+            background: transparent;
+            color: #ff0000;
+        }
+        
+        .button-secondary {
+            background: transparent;
+            color: #ff0000;
+        }
+        
+        .button-secondary:hover {
+            background: #ff0000;
+            color: #000;
+        }
+        
+        /* Counter */
+        .counter-section {
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid #ff0000;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .counter-section h2 {
+            color: #ff0000;
+            margin-bottom: 1rem;
+        }
+        
+        .counter-display {
+            display: flex;
+            justify-content: space-around;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .counter-item {
+            text-align: center;
+        }
+        
+        .counter-number {
+            font-size: 2.5rem;
+            color: #ff0000;
+            font-weight: bold;
+        }
+        
+        .counter-label {
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        /* Section */
+        section {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section h1 {
+            font-size: 2.5rem;
+            color: #ff0000;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+        
+        section h2 {
+            color: #ff0000;
+            margin: 1.5rem 0 1rem 0;
+            text-transform: uppercase;
+        }
+        
+        section h3 {
+            color: #fff;
+            margin: 1rem 0 0.5rem 0;
+        }
+        
+        section p {
+            color: #ccc;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .card {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            border-color: #ff0000;
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: #ff0000;
+            margin-bottom: 1rem;
+        }
+        
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .gallery-item {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .gallery-item:hover {
+            border-color: #ff0000;
+            transform: translateY(-5px);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-info {
+            padding: 1rem;
+        }
+        
+        .gallery-title {
+            color: #ff0000;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .product-item {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .product-item:hover {
+            border-color: #ff0000;
+            transform: translateY(-3px);
+        }
+        
+        .product-image {
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.9rem;
+            position: relative;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 1rem;
+        }
+        
+        .product-code {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .product-name {
+            color: #ff0000;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        
+        .product-price {
+            color: #ff0000;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        
+        .product-desc {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+        
+        /* FAQ */
+        .faq-item {
+            background: #1a1a1a;
+            border-left: 4px solid #ff0000;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            background: #252525;
+        }
+        
+        .faq-question {
+            color: #ff0000;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .faq-answer {
+            color: #ccc;
+            margin-top: 1rem;
+            display: none;
+            line-height: 1.8;
+        }
+        
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            border-top: 3px solid #ff0000;
+            padding: 2rem;
+            text-align: center;
+            color: #999;
+        }
+        
+        footer a {
+            color: #ff0000;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+            
+            nav button {
+                font-size: 0.75rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">ERROR 404</div>
+        <ul>
+            <li><button onclick="showPage('home')">Home</button></li>
+            <li><button onclick="showPage('gallery')">Gallery</button></li>
+            <li><button onclick="showPage('catalog')">Catalogo</button></li>
+            <li><button onclick="showPage('nft')">NFT</button></li>
+            <li><button onclick="showPage('faq')">FAQ</button></li>
+        </ul>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>ERROR 404</h1>
+                <p>Quando la realtà non viene trovata, la crei tu.</p>
+                <p style="font-size: 1rem; color: #999; margin-top: 1rem;">Limited Edition Streetwear × NFT Blockchain</p>
+                <div style="margin-top: 2rem;">
+                    <button class="button" onclick="showPage('catalog')">SCOPRI COLLEZIONE</button>
+                    <button class="button button-secondary" onclick="showPage('nft')">SISTEMA NFT</button>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <div class="counter-section">
+                <h2>🔥 NFT IN REGISTRAZIONE 🔥</h2>
+                <div class="counter-display">
+                    <div class="counter-item">
+                        <div class="counter-number">12</div>
+                        <div class="counter-label">Registrati</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-number">88</div>
+                        <div class="counter-label">Rimasti</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-number">100</div>
+                        <div class="counter-label">Limite Max</div>
+                    </div>
+                </div>
+                <p style="color: #ff6666; margin-top: 1rem;">⚡ Prima agisci, più sei unico.</p>
+            </div>
+        </section>
+
+        <section>
+            <h1>Perché ERROR 404?</h1>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Provocatorio</h3>
+                    <p>Non seguiamo le regole. Le sfidiamo. Ogni pezzo è una dichiarazione di ribellione intelligente.</p>
+                </div>
+                <div class="card">
+                    <h3>Limitato</h3>
+                    <p>Solo 100 pezzi. Blockchain verificati. Una volta finiti, è per sempre. Scarsità garantita.</p>
+                </div>
+                <div class="card">
+                    <h3>Autentico</h3>
+                    <p>Qualità premium. Design ricercato. NFT certificato. Ogni dettaglio conta.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- GALLERY PAGE (Showcase Loghi e Concept Art) -->
+    <div id="gallery" class="page">
+        <section>
+            <h1>Loghi & Concept Art</h1>
+            <p style="text-align: center; color: #999; margin-bottom: 2rem;">I 5 loghi principali e concept art della collezione</p>
+
+            <h2>📍 LOGHI ERROR 404</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x300?text=Logo+1+Glitch" alt="Logo 1">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-title">Logo 1: Digital Glitch</div>
+                        <p style="font-size: 0.9rem; color: #999;">Effetti di distorsione digitale con elementi pixelati</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x300?text=Logo+2+Minimalist" alt="Logo 2">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-title">Logo 2: Minimalist</div>
+                        <p style="font-size: 0.9rem; color: #999;">Design pulito e minimalista con linee spezzate</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x300?text=Logo+3+Cyberpunk" alt="Logo 3">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-title">Logo 3: Cyberpunk</div>
+                        <p style="font-size: 0.9rem; color: #999;">Stile cyberpunk con colori neon accesi</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x300?text=Logo+4+ERROR" alt="Logo 4">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-title">Logo 4: ERROR (Principale)</div>
+                        <p style="font-size: 0.9rem; color: #999;">Il logo principale con scritta ERROR integrata</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x300?text=Logo+5+Ironic" alt="Logo 5">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-title">Logo 5: Ironic</div>
+                        <p style="font-size: 0.9rem; color: #999;">Design irоnico e sarcastico con atteggiamento punk</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 3rem;">🎨 CONCEPT ART COLLEZIONE</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x300?text=Dissacrante" alt="Dissacrante">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-title">Dissacrante Urban Art</div>
+                        <p style="font-size: 0.9rem; color: #999;">Statua religiosa rotta con ERROR 404 integrato</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x300?text=Graffiti" alt="Graffiti">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-title">Street Graffiti</div>
+                        <p style="font-size: 0.9rem; color: #999;">Muro di graffiti urbani con figura in ombra</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x300?text=Water+Art" alt="Water">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-title">Dynamic Water</div>
+                        <p style="font-size: 0.9rem; color: #999;">Effetto acqua e spruzzi con logo ERROR 404</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x300?text=Broken+Objects" alt="Broken">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-title">Broken Objects</div>
+                        <p style="font-size: 0.9rem; color: #999;">Oggetti rotti nello spazio urbano</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x300?text=Fallen+Statue" alt="Statue">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-title">Fallen Statue</div>
+                        <p style="font-size: 0.9rem; color: #999;">Frammento di statua caduta a terra</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CATALOG PAGE -->
+    <div id="catalog" class="page">
+        <section>
+            <h1>Catalogo Prodotti</h1>
+            <p style="text-align: center; color: #999; margin-bottom: 2rem;">25 Pezzi Unici - Collezione Completa</p>
+
+            <h2>👕 MAGLIETTE UOMO (7 modelli)</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=T-shirt+1" alt="T-shirt 1">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">EM-001</div>
+                        <div class="product-name">Black Logo</div>
+                        <div class="product-price">€49 + €75 NFT</div>
+                        <div class="product-desc">Logo ERROR 404 rosso su nero</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=T-shirt+2" alt="T-shirt 2">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">EM-002</div>
+                        <div class="product-name">White Dissacrante</div>
+                        <div class="product-price">€52 + €75 NFT</div>
+                        <div class="product-desc">Arte dissacrante su bianco</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=T-shirt+3" alt="T-shirt 3">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">EM-003</div>
+                        <div class="product-name">Black Graffiti</div>
+                        <div class="product-price">€52 + €75 NFT</div>
+                        <div class="product-desc">Street graffiti urbani</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=T-shirt+4" alt="T-shirt 4">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">EM-004</div>
+                        <div class="product-name">White Water</div>
+                        <div class="product-price">€54 + €75 NFT</div>
+                        <div class="product-desc">Effetto acqua dinamico</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=T-shirt+5" alt="T-shirt 5">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">EM-005</div>
+                        <div class="product-name">Black Broken</div>
+                        <div class="product-price">€52 + €75 NFT</div>
+                        <div class="product-desc">Oggetti rotti ironia urbana</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=T-shirt+6" alt="T-shirt 6">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">EM-006</div>
+                        <div class="product-name">Fallen Statue</div>
+                        <div class="product-price">€54 + €75 NFT</div>
+                        <div class="product-desc">Frammento statua caduta</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=T-shirt+7" alt="T-shirt 7">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">EM-007</div>
+                        <div class="product-name">Stone Fragments</div>
+                        <div class="product-price">€54 + €75 NFT</div>
+                        <div class="product-desc">Frammenti pietra a terra</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>🧥 FELPE UOMO (7 modelli)</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=Hoodie+U1" alt="Hoodie 1">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">FU-001</div>
+                        <div class="product-name">Black Logo</div>
+                        <div class="product-price">€89 + €100 NFT</div>
+                        <div class="product-desc">Logo fronte 28cm oversized</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=Hoodie+U2" alt="Hoodie 2">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">FU-002</div>
+                        <div class="product-name">White Dissacrante</div>
+                        <div class="product-price">€94 + €100 NFT</div>
+                        <div class="product-desc">Arte dissacrante grande</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=Hoodie+U3" alt="Hoodie 3">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">FU-003</div>
+                        <div class="product-name">Black Graffiti</div>
+                        <div class="product-price">€94 + €100 NFT</div>
+                        <div class="product-desc">Graffiti urbani iconico</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=Hoodie+U4" alt="Hoodie 4">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">FU-004</div>
+                        <div class="product-name">White Water</div>
+                        <div class="product-price">€96 + €100 NFT</div>
+                        <div class="product-desc">Effetto acqua contemporaneo</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=Hoodie+U5" alt="Hoodie 5">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">FU-005</div>
+                        <div class="product-name">Black Broken</div>
+                        <div class="product-price">€94 + €100 NFT</div>
+                        <div class="product-desc">Oggetti rotti satira</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=Hoodie+U6" alt="Hoodie 6">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">FU-006</div>
+                        <div class="product-name">Scattered Fragments</div>
+                        <div class="product-price">€98 + €100 NFT</div>
+                        <div class="product-desc">Frammenti dispersi arte</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=Hoodie+U7" alt="Hoodie 7">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">FU-007</div>
+                        <div class="product-name">Monument Collapse</div>
+                        <div class="product-price">€98 + €100 NFT</div>
+                        <div class="product-desc">Monumento in caduta</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>👚 MAGLIETTE DONNA (5 modelli)</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=T-shirt+D1" alt="T-shirt D1">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">ED-001</div>
+                        <div class="product-name">Black Logo Woman</div>
+                        <div class="product-price">€51 + €75 NFT</div>
+                        <div class="product-desc">Logo fit donna essenziale</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=T-shirt+D2" alt="T-shirt D2">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">ED-002</div>
+                        <div class="product-name">White Dissacrante W</div>
+                        <div class="product-price">€54 + €75 NFT</div>
+                        <div class="product-desc">Dissacrante ricercato donna</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=T-shirt+D3" alt="T-shirt D3">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">ED-003</div>
+                        <div class="product-name">Black Graffiti W</div>
+                        <div class="product-price">€54 + €75 NFT</div>
+                        <div class="product-desc">Graffiti urbani donna</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=T-shirt+D4" alt="T-shirt D4">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">ED-004</div>
+                        <div class="product-name">White Water W</div>
+                        <div class="product-price">€56 + €75 NFT</div>
+                        <div class="product-desc">Effetto acqua donna</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=T-shirt+D5" alt="T-shirt D5">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">ED-005</div>
+                        <div class="product-name">Broken Monument W</div>
+                        <div class="product-price">€56 + €75 NFT</div>
+                        <div class="product-desc">Monumento rotto donna</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>🧥 FELPE DONNA (5 modelli)</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=Hoodie+D1" alt="Hoodie D1">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">FD-001</div>
+                        <div class="product-name">Black Logo W</div>
+                        <div class="product-price">€91 + €100 NFT</div>
+                        <div class="product-desc">Logo fronte donna premium</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=Hoodie+D2" alt="Hoodie D2">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">FD-002</div>
+                        <div class="product-name">White Dissacrante</div>
+                        <div class="product-price">€96 + €100 NFT</div>
+                        <div class="product-desc">Dissacrante grande donna</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=Hoodie+D3" alt="Hoodie D3">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">FD-003</div>
+                        <div class="product-name">Black Graffiti</div>
+                        <div class="product-price">€96 + €100 NFT</div>
+                        <div class="product-desc">Graffiti donna iconico</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=Hoodie+D4" alt="Hoodie D4">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">FD-004</div>
+                        <div class="product-name">White Water</div>
+                        <div class="product-price">€98 + €100 NFT</div>
+                        <div class="product-desc">Effetto acqua contemporaneo</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x180?text=Hoodie+D5" alt="Hoodie D5">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-code">FD-005</div>
+                        <div class="product-name">Toppled Statue</div>
+                        <div class="product-price">€100 + €100 NFT</div>
+                        <div class="product-desc">Statua rovesciata donna</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- NFT PAGE -->
+    <div id="nft" class="page">
+        <section>
+            <h1>Il Sistema NFT</h1>
+            
+            <h2>Come Funziona</h2>
+            <p>Ogni capo ERROR 404 include un NFT blockchain verificabile su Polygon.</p>
+
+            <h2 style="margin-top: 2rem;">Prezzo Dinamico</h2>
+            <p><strong>Prima agisci, più paghi. Ma più sei unico.</strong></p>
+            <ul style="margin-left: 2rem; color: #ccc;">
+                <li>Edizioni 001-010 (Pioneer): €374 totale</li>
+                <li>Edizioni 011-050 (Collector): €274 totale</li>
+                <li>Edizioni 051-100 (Standard): €204 totale</li>
+            </ul>
+
+            <h2 style="margin-top: 2rem;">Il Limite Assoluto</h2>
+            <p><strong>100 pezzi totali.</strong> Una volta raggiunto questo numero sulla blockchain, la produzione si blocca permanentemente.</p>
+
+            <div class="counter-section" style="margin-top: 2rem;">
+                <h2>📊 STATO LIVE</h2>
+                <div class="counter-display">
+                    <div class="counter-item">
+                        <div class="counter-number">12</div>
+                        <div class="counter-label">Registrati</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-number">88</div>
+                        <div class="counter-label">Rimasti</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-number">100</div>
+                        <div class="counter-label">Max</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FAQ PAGE -->
+    <div id="faq" class="page">
+        <section>
+            <h1>Domande Frequenti</h1>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Cosa è ERROR 404? <span style="float: right;">+</span></div>
+                <div class="faq-answer">ERROR 404 è una collezione limitata di abbigliamento streetwear (solo 100 pezzi) dove ogni capo è accompagnato da un NFT blockchain verificabile. È una dichiarazione filosofica sulla caduta dei sistemi simbolici e l'emergenza della verità attraverso l'ironia intelligente.</div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Quanti pezzi esistono? <span style="float: right;">+</span></div>
+                <div class="faq-answer">Esattamente 100 pezzi totali. Una volta raggiunto questo numero, la produzione si blocca permanentemente sulla blockchain.</div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Come funziona l'NFT? <span style="float: right;">+</span></div>
+                <div class="faq-answer">Ogni capo include un numero seriale univoco e un QR code. Scansionando il QR, puoi registrare il tuo NFT sulla blockchain Polygon.</div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Posso rivendere il capo? <span style="float: right;">+</span></div>
+                <div class="faq-answer">Sì, puoi rivendere il capo con il suo NFT su marketplace come OpenSea o Rarible. Il numero seriale rimane sempre legato al capo.</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ERROR 404 STREETWEAR. All Rights Reserved.</p>
+        <p>error404.me | Limited Edition × Blockchain Verified × 100 Pieces Max</p>
+        <p style="margin-top: 1rem; color: #666;">Ogni NFT registrato fa sì che il capo venga prodotto e spedito. Una volta finiti i 100, la collezione è chiusa per sempre.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+            <a href="#">Twitter</a>
+            <a href="#">Discord</a>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function toggleFaq(element) {
+            element.classList.toggle('open');
+            const icon = element.querySelector('.faq-question span');
+            icon.textContent = element.classList.contains('open') ? '−' : '+';
+        }
+    </script>
+</body>
+</html>
